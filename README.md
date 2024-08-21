@@ -2,12 +2,12 @@
 
 ## Start docker container for S3 Minio
 ```bash
-cd /docker
+cd docker
 ./start.sh
 ```
 
 ## Stop and Remove docker container for S3 Minio
 ```bash
-cd /docker
+cd docker
 ./down.sh
 ```
