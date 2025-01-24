@@ -7,7 +7,7 @@
     using Xunit.DependencyInjection.Demystifier;
     using Xunit.DependencyInjection.Logging;
 
-    public static class Startup
+    internal static class Startup
     {
         public static void ConfigureHost(IHostBuilder hostBuilder)
         {

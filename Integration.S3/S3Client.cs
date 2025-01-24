@@ -35,8 +35,13 @@
                 .WithStreamData(args.Data)
                 .WithObjectSize(args.Data.Length);
 
-            await _minioClient.PutObjectAsync(minioArgs, ct)
+            var res = await _minioClient.PutObjectAsync(minioArgs, ct)
                 .ConfigureAwait(false);
+
+            if (string.IsNullOrEmpty(res.Etag))
+            {
+                throw new IntegrationException($"Could not send file to S3: Bucket={args.Bucket}, Name={args.Name}");
+            }
         }
 
         public async Task<S3File> GetAsync(GetS3FileArgs args, CancellationToken ct)
@@ -48,6 +53,11 @@
 
             var res = await _minioClient.GetObjectAsync(minioArgs, ct)
                 .ConfigureAwait(false);
+
+            if (string.IsNullOrEmpty(res.ETag))
+            {
+                throw new IntegrationException($"Could not get file from S3: Bucket={args.Bucket}, Name={args.Name}");
+            }
 
             return new S3File(res.ContentType, res.Size);
         }

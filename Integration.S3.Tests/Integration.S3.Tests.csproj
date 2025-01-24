@@ -23,6 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
 		<PackageReference Include="Xunit.DependencyInjection" Version="9.3.0" />
 		<PackageReference Include="Xunit.DependencyInjection.Demystifier" Version="9.0.0" />
 		<PackageReference Include="Xunit.DependencyInjection.Logging" Version="9.0.0" />
